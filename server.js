@@ -10,17 +10,14 @@ const app = express();
 app.use(express.static('public'));
 
 app.get('/api/notes', (req, res) => {
-  res.json(req.params);
+  res.json(data);
 });
 
 app.get('/api/notes/:id', (req, res) => {
-  const query = req.params;
-  let list = data; 
   const id = req.params.id;
-  if (query.id) {
-    list = list.find(note => note.id === (id));
-  }
-  res.json(list);
+  let requestedData = data.find(note => note.id === Number(id));
+  
+  res.json(requestedData);
 });
 
 app.listen(8080, function(){
